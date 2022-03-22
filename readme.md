@@ -46,7 +46,7 @@ lancement avec: npm run dev
 
 //-------------------------------------------------------------------------------
 
-### Dans le fichier groupomania-r-s
+## Dans le fichier groupomania-r-s
 
 //-----------------
 
