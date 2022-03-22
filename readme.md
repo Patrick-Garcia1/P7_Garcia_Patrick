@@ -14,10 +14,13 @@ utilisation de workbench
 CREATE DATABASE Groupomania;
 
 // clic sur éclair
+
 //------------------
 
 sequelize db:drop
+
 sequelize db:create
+
 sequelize db:migrate
 
 //------------------
