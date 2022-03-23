@@ -33,6 +33,8 @@ Installation des packages voir package-json et version
 
 npm install
 
+lancement avec: npm run dev
+
 //-------------------------------------------------------------------------------
 
 ## Dans le dossier groupomania-r-s
