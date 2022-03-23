@@ -80,6 +80,8 @@ faire les préréglages:
     
     N
 
+## Dans le dossier groupomania-r-s
+
 Installation des packages voir package-json
     
     
