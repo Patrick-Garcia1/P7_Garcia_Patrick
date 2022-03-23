@@ -248,10 +248,10 @@ export default {
         });
     },
   },
+  //----------------------------
+    // Logique à l'affichage des messages une fois "montée"
+    //----------------------------
   mounted() {
-    //----------------------------
-    // Logique à l'affichage des messages
-    //----------------------------
     let qui = JSON.parse(sessionStorage.getItem("utilisateur"));
     this.quiId = qui.userId;
     this.date_deco = qui.date_deco;
