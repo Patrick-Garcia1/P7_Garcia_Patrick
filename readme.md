@@ -9,7 +9,7 @@
 
 //------------------
 
-utilisation de workbench
+utilisation de workbench pour les tables et créer une table unique.
 
 CREATE DATABASE Groupomania;
 
