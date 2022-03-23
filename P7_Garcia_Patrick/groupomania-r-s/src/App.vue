@@ -1,10 +1,15 @@
 <template>
+  <!-- application vue -->
   <header>
     <h1 v-on:click="maj()" title="mis à jour de la page">Groupomania</h1>
+    <!-- composant NavUser -->
     <NavUser />
+    <!-- composant NavMur -->
     <NavMur />
   </header>
+  <!-- affichage des vue via le composant router-view -->
   <router-view />
+  <!-- composant Footer -->
   <Footer />
 </template>
 
@@ -21,6 +26,9 @@ export default {
     Footer,
   },
   methods: {
+  //------------------
+  // Logique de mise à jour de la page 
+  //------------------
     maj() {
       let c = document.location.href.split("8080/")[1];
       document.location.href = `/${c}`;
