@@ -24,10 +24,11 @@ sequelize db:create
 sequelize db:migrate
 
 //------------------
- 
-Installation des packages voir package-json
+Installation machine
 
-    node
+node.js
+
+Installation des packages voir package-json
 
     bcrypt
     dotenv
