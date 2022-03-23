@@ -4,8 +4,6 @@
 
 Installation machine
 
-//------------------
-
 node.js
 
 ## Dans le dossier backend 
