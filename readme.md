@@ -57,6 +57,7 @@ Installation de @vue-cli
 lancez vue create groupomania-r-s pour créer le projet
     
 faire les préréglages:
+
     Manually select features
     
     babel
