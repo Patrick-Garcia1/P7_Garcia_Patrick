@@ -8,20 +8,23 @@ node.js
 
 ## Dans le dossier backend 
 
+//------------------
+
 ==> config 
-===> créer le fichier .env (voir env.exemple) et inserer mot de passe dans le fichier config de la bdd 
+
+===> créer le fichier .env (voir env.exemple)
+
+Inserer mot de passe dans le fichier config de la bdd 
 
 //------------------
 
-utilisation de workbench pour les tables et créer une table unique.
+utilisation de workbench pour voir les tables et créer une table unique (qui n'est pas déja nommée dans workbench).
 
 CREATE DATABASE Groupomania;
 
 // clic sur éclair
 
 //------------------
-
-sequelize db:drop 
 
 sequelize db:create
 
