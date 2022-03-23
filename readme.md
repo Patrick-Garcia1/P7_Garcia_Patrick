@@ -47,14 +47,18 @@ lancement avec: npm run dev
 
 //-------------------------------------------------------------------------------
 
-## Dans le dossier de départ P7_....
+## Dans le dossier groupomania-r-s
 
 //-----------------
 Installation de @vue-cli
 
     @vue/cli
     
+## Retour dans l'arborescence avec cd..
+
 lancez vue create groupomania-r-s pour créer le projet
+
+Choisissez Merge
     
 faire les préréglages:
 
@@ -75,9 +79,6 @@ faire les préréglages:
     In dedicated config files
     
     N
-
-## Dans le dossier groupomania-r-s
-
 
 Installation des packages voir package-json
     
