@@ -66,7 +66,7 @@ faire les préréglages:
     
     je choisis la version de vue 3.
     
-    Sass/SCSS (attention à la version que vous choisissez, je choisi la version dart comme celle installé sur mon pc)
+    Sass/SCSS (attention à la version que vous choisissez, je choisi la version dart comme celle installé sur mon pc (sass --version))
     
     ESLint with error prevention only
     
