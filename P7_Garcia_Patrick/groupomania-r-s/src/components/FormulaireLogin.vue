@@ -1,7 +1,10 @@
-<template>
+<template> 
+  <!-- zone login -->
   <div class="zoneLogin">
     <p class="zoneLogin__aide">Connexion</p>
-    <form method="get" class="zoneLogin__formulaire">
+    <!-- formulaire de connection -->
+    <form class="zoneLogin__formulaire">
+      <!-- champ email -->
       <div class="zoneLogin__formulaire__champs">
         <label for="email">Champ email</label>
         <input
@@ -15,6 +18,7 @@
           required
         />
       </div>
+      <!-- champ mot de passe -->
       <div class="zoneLogin__formulaire__champs">
         <label for="mdp">Champ mot de passe</label>
         <input
@@ -30,6 +34,7 @@
           required
         />
       </div>
+      <!-- bouton soumission formulaire -->
       <input
         v-on:click="connection"
         type="submit"
@@ -53,8 +58,10 @@ export default {
       email: "",
     };
   },
-  computed: {},
   methods: {
+    //----------------------------
+    // Logique de connection et création du jeton utilisateur en session storage
+    //----------------------------
     connection(e) {
       e.preventDefault();
       if (this.password === "" || this.email === "") {
@@ -67,6 +74,7 @@ export default {
           email: this.email,
         })
         .then((res) => {
+          // mapstate inutilisable en dynamique, perte des données au refresh 
           //this.$store.state.utilisateur.userId = res.data.userId;
           //this.$store.state.utilisateur.moderateur = res.data.moderateur;
           //this.$store.state.utilisateur.token = res.data.token;

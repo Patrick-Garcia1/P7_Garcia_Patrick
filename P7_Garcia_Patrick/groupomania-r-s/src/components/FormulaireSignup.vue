@@ -1,7 +1,9 @@
 <template>
+  <!-- zone inscription -->
   <div class="zoneSignup">
     <p class="zoneSignup__aide">Inscription</p>
-    <form method="get" class="zoneSignup__formulaire">
+    <form class="zoneSignup__formulaire">
+      <!-- champ email -->
       <div class="zoneSignup__formulaire__champs">
         <label for="email">Champ email</label>
         <input
@@ -15,6 +17,7 @@
           required
         />
       </div>
+      <!-- champ mot de passe-->
       <div class="zoneSignup__formulaire__champs">
         <label for="mdp">Champ mot de passe</label>
         <input
@@ -28,6 +31,7 @@
           required
         />
       </div>
+      <!-- champ service -->
       <div class="zoneSignup__formulaire__champs">
         <label for="service">Champ du Service</label>
         <select
@@ -47,6 +51,7 @@
           </option>
         </select>
       </div>
+      <!-- champ nom -->
       <div class="zoneSignup__formulaire__champs">
         <label for="nom">Champ du Nom</label>
         <input
@@ -60,6 +65,7 @@
           required
         />
       </div>
+      <!-- champ prénom -->
       <div class="zoneSignup__formulaire__champs">
         <label for="prenom">Champ du Prénom</label>
         <input
@@ -73,6 +79,7 @@
           required
         />
       </div>
+      <!-- bouton soumission formulaire -->
       <input
         type="submit"
         v-on:click="inscription"
@@ -111,14 +118,16 @@ export default {
       ],
     },
   },
-  methods: {
+  methods: { 
+    //----------------------------
+    // Logique d'inscription
+    //----------------------------
     inscription(e) {
       e.preventDefault();
-      // mon adresse doit avoir cette forme pour que je puisse la valider
+      // logique des input
       let regEmailMatch = this.email.match(
         /^[a-zA-Z0-9.çæœ!#$%&’*+/=?^_`{|}~"(),:;<>[\]-]+@([a-zA-Z0-9-]+\.)+[\w-]{2,4}$/
       );
-      // quand le resultat sera correct, le console log affichera une autre réponse que null
       if (regEmailMatch == null) {
         return (document.querySelector(".zoneSignup__aide").innerHTML =
           "Forme email incorrecte");
@@ -145,7 +154,6 @@ export default {
         return (document.querySelector(".zoneSignup__aide").innerHTML =
           "Erreur nom/prénom <br> Seuls les caratères normaux sont autorisés");
       }
-
       axios
         .post("http://localhost:3000/api/auth/signup", {
           password: this.password,

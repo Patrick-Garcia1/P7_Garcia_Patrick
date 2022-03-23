@@ -1,4 +1,5 @@
 <template>
+  <!-- barre de navigation primaire -->
   <div id="nav" v-if="truc === true">
     <router-link to="/login">Connexion</router-link> |
     <router-link to="/signup">Inscription</router-link>
@@ -13,6 +14,9 @@ export default {
       truc: "",
     };
   },
+    //----------------------------
+    // Logique d'affichage de la barre de navigation primaire après "montage"
+    //----------------------------
   mounted() {
     let c = document.location.href.split("8080")[1];
     if (c.match("/login") || c.match("/signup") || c === "/") {

@@ -1,12 +1,14 @@
 <template>
   <div class="message">
+    <!-- composant NewMessage -->
     <NewMessage />
-
+    <!-- liste des messages -->
     <div
       class="message__list"
       v-for="message in messages"
       v-bind:key="message.id"
     >
+      <!-- bouton efface message -->
       <div
         v-on:click="EffacerMessage(message.id)"
         v-if="quiId === message.UserId || moderateur === true"
@@ -17,9 +19,11 @@
         <p class="message__list--effacebtn--icone">X</p>
       </div>
       <div class="message__list__user">
+        <!-- composant Nouveau -->
         <Nouveau
           v-if="date_deco <= message.createdAt && message.UserId != quiId"
         />
+        <!-- entête message -->
         <p class="message__list__user__nom" v-if="message.User != null">
           {{ message.User.nom }}
           {{ message.User.prenom }} <span class="message__list__user__nom__icon">☺</span> Contact: {{ message.User.email }}
@@ -43,6 +47,7 @@
         </p>
         <p class="message__list__user__para" v-else>Message conservé</p>
       </div>
+      <!-- zone message -->
       <p class="message__list__titre">{{ message.titre }}</p>
       <img
         loading="lazy"
@@ -53,24 +58,27 @@
         width="350px"
         height="350px"
       />
-      <p class="message__list__texte">{{ message.texte }}</p>
-
+      <p class="message__list__texte" v-if="message.texte !== ''">{{ message.texte }}</p>
+      <!-- zone commentaire -->
       <div class="message__commentaire">
         <p class="message__commentaire__para">Commentaires</p>
         <div class="message__commentaire__affiche">
+        <!-- liste des commentaires -->
           <div
             class="message__commentaire__affiche__unique"
             v-for="commentaire in commentaires.filter((commentaire) => {
               return commentaire.messageId == message.id;
             })"
             v-bind:key="commentaire.id"
-          >
+          > 
+            <!-- composant Nouveau -->
             <Nouveau
               v-if="
                 date_deco <= commentaire.createdAt &&
                 commentaire.UserId != quiId
               "
             />
+            <!-- bouton efface commentaire -->
             <div
               v-on:click="
                 EffacerCommentaire(commentaire.messageId, commentaire.id)
@@ -98,6 +106,7 @@
                 height="30px"
               />
             </div>
+            <!-- entête commentaire -->
             <p
               class="message__commentaire__affiche__user"
               v-if="commentaire.User != null"
@@ -120,6 +129,7 @@
           </div>
         </div>
       </div>
+      <!-- zone ajout commentaire -->
       <form class="comment">
         <input
           v-on:click="validerCommentaire(message.id)"
@@ -131,6 +141,7 @@
         <div class="comment__cadre">
           <div class="comment__cadre__grand">
             <div class="comment__cadre__grand__champs">
+              <!-- création id unique entre label et "input/textarea/..." -->
               <label v-show="labelcom == true" v-bind:for="`${message.User.nom}${message.User.prenom}${message.createdAt}`" class="comment__cadre__grand__champs__label">Commentez</label>
               <textarea
                 type="text"
@@ -172,8 +183,10 @@ export default {
       labelcom: "",
     };
   },
-  computed: {},
   methods: {
+    //----------------------------
+    // Logique efface message
+    //----------------------------
     EffacerMessage(idMessage) {
       let qui = JSON.parse(sessionStorage.getItem("utilisateur"));
 
@@ -190,6 +203,9 @@ export default {
           console.error(error.response.data);
         });
     },
+    //----------------------------
+    // Logique post message
+    //----------------------------
     validerCommentaire(idMessage) {
       let oui = JSON.parse(sessionStorage.getItem("utilisateur"));
       if (this.texteCom === "") {
@@ -209,6 +225,9 @@ export default {
           console.error(error.response.data);
         });
     },
+    //----------------------------
+    // Logique efface commentaire
+    //----------------------------
     EffacerCommentaire(idMessage, idCommentaire) {
       let qui = JSON.parse(sessionStorage.getItem("utilisateur"));
 
@@ -230,6 +249,9 @@ export default {
     },
   },
   mounted() {
+    //----------------------------
+    // Logique à l'affichage des messages
+    //----------------------------
     let qui = JSON.parse(sessionStorage.getItem("utilisateur"));
     this.quiId = qui.userId;
     this.date_deco = qui.date_deco;
@@ -247,7 +269,9 @@ export default {
       .catch((error) => {
         console.error(error.response.data);
       });
-
+    //----------------------------
+    // Logique à l'affichage des commentaires
+    //----------------------------
     axios
       .get("http://localhost:3000/api/messages/commentaires", {
         headers: {

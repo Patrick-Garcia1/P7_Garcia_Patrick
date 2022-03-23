@@ -1,6 +1,8 @@
 <template>
+<!-- nouveau message -->
   <form class="post">
     <p class="post__para" v-if="touche === true"></p>
+    <!-- bouton d'affichage -->
     <input
       v-on:click="CreerMessage()"
       v-if="touche !== true"
@@ -9,8 +11,10 @@
       title="Nouveau Message."
       class="post__creer"
     />
+    <!-- zone des champs -->
     <div class="post__cadre" v-if="touche === true">
       <div class="post__cadre__grand">
+        <!-- champ titre -->
         <div class="post__cadre__grand__champs">
           <input
             type="text"
@@ -22,6 +26,7 @@
             required
           />
         </div>
+        <!-- champ texte -->
         <div class="post__cadre__grand__champs">
           <textarea
             type="text"
@@ -33,6 +38,7 @@
             required
           ></textarea>
         </div>
+        <!-- champ insertion fichier -->
         <div class="post__cadre__grand__champs">
           <input
             @change="imageMessage()"
@@ -46,6 +52,7 @@
         </div>
       </div>
     </div>
+    <!-- bouton de soumission -->
     <input
       v-on:click="validerMessage()"
       v-if="touche === true"
@@ -54,6 +61,7 @@
       title="Valider le message."
       class="post__submit"
     />
+    <!-- disparition de la zone de nouveau message -->
     <input
       v-on:click="annule()"
       v-if="touche === true"
@@ -79,24 +87,40 @@ export default {
     };
   },
   methods: {
+    //----------------------------
+    // Logique d'affichage 
+    //----------------------------
     CreerMessage() {
       this.touche = true;
     },
+    //----------------------------
+    // Logique d'affichage 
+    //----------------------------
     annule() {
       this.touche = false;
     },
+    //----------------------------
+    // Logique de récupération de valeur du fichier inséré
+    //----------------------------
     imageMessage() {
       this.file = this.$refs.file.files[0];
     },
+    //----------------------------
+    // Logique de nouveau message
+    //----------------------------
     validerMessage() {
       let oui = JSON.parse(sessionStorage.getItem("utilisateur"));
-      if (this.titre === "" || this.texte === "") {
+      if (this.titre === "") {
         return (document.querySelector(".post__para").innerHTML =
-          "Remplissez Titre/Texte");
+          "Insérer un Titre");
+      }
+      if (this.texte === "" && this.file === "") {
+        return (document.querySelector(".post__para").innerHTML =
+          "Insérer un fichier ou un texte");
       }
       if (this.file.size >= 2621439) {
         return (document.querySelector(".post__para").innerHTML =
-          "Fichier trop gros");
+          "Le fichier ne doit pas dépasser 2.5Mo");
       }
       const data = new FormData();
       data.append("image", this.file);
@@ -112,7 +136,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          //document.location.href = "/messages";
+          document.location.href = "/messages";
         })
         .catch((error) => {
           console.error(error.response.data);

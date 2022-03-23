@@ -1,4 +1,5 @@
 <template>
+  <!-- corp du pied de page -->
   <footer class="footer">
     <img 
       loading="lazy"

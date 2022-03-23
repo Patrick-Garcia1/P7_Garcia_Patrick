@@ -1,4 +1,5 @@
 <template>
+  <!-- indicateur de nouveau message -->
   <div class="nouveau" title="Nouveauté.">
     <p class="nouveau__para">✪</p>
   </div>

@@ -1,14 +1,18 @@
 <template>
+  <!-- zone utilisateur -->
   <div class="profil">
+    <!-- zone information utilisateur -->
     <div class="profil__User" v-if="modif !== true">
+      <!-- bouton d'accés zone modification utilisateur -->
       <input
         v-on:click="appui"
         type="button"
         id="modifProfil"
         title="Cliquez ici pour modifier votre profil."
         value="Modifier profil"
-        class="profil__User__formulaire__champs__soumi"
+        class="profil__User__modif"
       />
+      <!-- image profil utilisateur -->
       <div class="profil__User__bordure">
         <div class="profil__User__bordure__cadre">
           <img
@@ -28,6 +32,7 @@
       <p>Email: {{ dataUser.email }}</p>
       <p>Inscrit le: {{ dataUser.createdAt }}</p>
       <div class="profil__User__formulaire__champs">
+        <!-- bouton efface profil utilisateur -->
         <input
           v-on:click="efface"
           type="submit"
@@ -36,6 +41,7 @@
           value="Effacer profil"
           class="profil__User__formulaire__champs__soumi"
         />
+        <!-- champ mot de passe pour suppression profil -->
         <div>
           <label for="mdpEfface">Mot de passe actuel</label>
           <input
@@ -51,14 +57,12 @@
         </div>
       </div>
     </div>
-
+    <!-- zone modification profil-->
     <div class="profil__User" v-if="modif === true">
       <p>Modification Profil :</p>
-      <p class="profil__User__p">
-        Renseigner le mot de passe actuel puis renseigner le(s) champ(s) que
-        vous voulez modifier.
-      </p>
-      <form method="get" class="profil__User__formulaire">
+      <!-- formulaire modification utilisateur -->
+      <form class="profil__User__formulaire">
+        <!-- champ mot de passe actuel pour vérification utilisateur -->
         <div class="profil__User__formulaire__champs">
           <label for="mdp">Mot de passe actuel</label>
           <input
@@ -72,8 +76,9 @@
             required
           />
         </div>
-
+        <!-- champ changement mot de passe -->
         <div class="profil__User__formulaire__champs">
+          <!-- champ nouveau mot de passe -->
           <label for="new_password">Nouveau mot de passe</label>
           <input
             type="password"
@@ -84,6 +89,7 @@
             placeholder="Nouveau"
             class="profil__User__formulaire__champs__input"
           />
+          <!-- champ vérification nouveau mot de passe -->
           <label for="new_password_bis">Vérification</label>
           <input
             type="password"
@@ -95,8 +101,9 @@
             class="profil__User__formulaire__champs__input"
           />
         </div>
-
+        <!-- champ changement de donnée utilisateur -->
         <div class="profil__User__formulaire__champs">
+          <!-- champ nom -->
           <label for="nom">Changement de nom</label>
           <input
             type="text"
@@ -107,6 +114,7 @@
             placeholder="Nom"
             class="profil__User__formulaire__champs__input"
           />
+          <!-- champ prénom -->
           <label for="prenom">Changement de prénom</label>
           <input
             type="text"
@@ -117,6 +125,7 @@
             placeholder="Prénom"
             class="profil__User__formulaire__champs__input"
           />
+          <!-- champ email -->
           <label for="email">Changement d'email</label>
           <input
             type="email"
@@ -127,6 +136,7 @@
             placeholder="email"
             class="profil__User__formulaire__champs__input"
           />
+          <!-- champ service -->
           <label for="service">Changement de Service</label>
           <select
             name="service"
@@ -143,6 +153,7 @@
               {{ item }}
             </option>
           </select>
+          <!-- champ image de profil -->
           <label for="photoUser">Changement de photo</label>
           <input
             name="photoUser"
@@ -154,6 +165,12 @@
             class="profil__User__formulaire__champs__input"
           />
         </div>
+        <!-- champ du renseignement -->
+        <p class="profil__User__formulaire__champs__p">
+          Renseigner le mot de passe actuel puis renseigner le(s) champ(s) que
+          vous voulez modifier.
+        </p>
+        <!-- bouton soumission changement de donnée profil utilisateur -->
         <input
           type="submit"
           v-on:click="modification"
@@ -162,6 +179,7 @@
           id="modif"
           class="profil__User__formulaire__champs__soumi"
         />
+        <!-- bouton annulation soumission changement de donnée profil utilisateur -->
         <input
           type="button"
           v-on:click="annuleModification"
@@ -208,29 +226,41 @@ export default {
     },
   },
   methods: {
+    //----------------------------
+    // Logique affichage accés modification profil
+    //----------------------------
     appui() {
       this.modif = true;
     },
+    //----------------------------
+    // Logique affichage annulation modification profil
+    //----------------------------
     annuleModification() {
       this.modif = false;
     },
+    //----------------------------
+    // Logique d'affectation de valeur du champ file
+    //----------------------------
     imageProfil() {
       this.file = this.$refs.file.files[0];
     },
+    //----------------------------
+    // Logique modification utilisateur
+    //----------------------------
     modification(e) {
       e.preventDefault();
       if (this.password === "") {
-        return (document.querySelector(".profil__User__p").innerHTML =
+        return (document.querySelector(".profil__User__formulaire__champs__p").innerHTML =
           "Remplissez le champ du mot de passe actuel");
       } else {
-        document.querySelector(".profil__User__p").innerHTML =
+        document.querySelector(".profil__User__formulaire__champs__p").innerHTML =
           "Mot de passe rempli";
       }
       let pass = this.password.match(
         /^((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,20})$/
       );
       if (pass === null) {
-        return (document.querySelector(".profil__User__p").innerHTML =
+        return (document.querySelector(".profil__User__formulaire__champs__p").innerHTML =
           "Forme du mot de passe incorrecte");
       }
       if (this.new_password !== "") {
@@ -238,14 +268,14 @@ export default {
           /^((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,20})$/
         );
         if (pass1 === null) {
-          return (document.querySelector(".profil__User__p").innerHTML =
-            "Le mot de passe contient majuscule, minuscule, chiffre, caractère spécial ainsi que :<br> caractère min: 8, max: 20");
+          return (document.querySelector(".profil__User__formulaire__champs__p").innerHTML =
+            "Le nouveau mot de passe doit contenir majuscule, minuscule, chiffre, caractère spécial ainsi que :<br> caractère min: 8, max: 20");
         }
         if (this.new_password_bis !== this.new_password) {
-          return (document.querySelector(".profil__User__p").innerHTML =
+          return (document.querySelector(".profil__User__formulaire__champs__p").innerHTML =
             "Erreur dans la vérification du mot de passe");
         } else {
-          document.querySelector(".profil__User__p").innerHTML =
+          document.querySelector(".profil__User__formulaire__champs__p").innerHTML =
             "Modification mot de passe correcte";
         }
       }
@@ -254,7 +284,7 @@ export default {
           /^[a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ\s-]{1,31}$/i
         );
         if (leNom != 0) {
-          return (document.querySelector(".profil__User__p").innerHTML =
+          return (document.querySelector(".profil__User__formulaire__champs__p").innerHTML =
             "Erreur nom/prénom, seuls les caratères normaux sont autorisés");
         }
       }
@@ -263,7 +293,7 @@ export default {
           /^[a-záàâäãåçéèêëíìîïñóòôöõúùûüýÿæœ\s-]{1,31}$/i
         );
         if (lePrenom != 0) {
-          return (document.querySelector(".profil__User__p").innerHTML =
+          return (document.querySelector(".profil__User__formulaire__champs__p").innerHTML =
             "Erreur nom/prénom, seuls les caratères normaux sont autorisés");
         }
       }
@@ -272,13 +302,13 @@ export default {
           /^[a-zA-Z0-9.çæœ!#$%&’*+/=?^_`{|}~"(),:;<>[\]-]+@([a-zA-Z0-9-]+\.)+[\w-]{2,4}$/
         );
         if (regEmailMatch == null) {
-          return (document.querySelector(".profil__User__p").innerHTML =
+          return (document.querySelector(".profil__User__formulaire__champs__p").innerHTML =
             "Forme email incorrecte");
         }
       }
       if (this.file.size >= 2621439) {
-        return (document.querySelector(".profil__User__p").innerHTML =
-          "Fichier trop gros");
+        return (document.querySelector(".profil__User__formulaire__champs__p").innerHTML =
+          "Le fichier ne doit pas dépasser 2.5Mo");
       }
 
       let qui = JSON.parse(sessionStorage.getItem("utilisateur"));
@@ -309,10 +339,13 @@ export default {
         .catch((error) => {
           console.error(error.response.data);
 
-          return (document.querySelector(".profil__User__p").innerHTML =
-            "Une erreur s'est produite");
+          return (document.querySelector(".profil__User__formulaire__champs__p").innerHTML =
+            "Une erreur s'est produite, vérifiez votre mot de passe");
         });
     },
+    //----------------------------
+    // Logique suppression utilisateur
+    //----------------------------
     efface() {
       const passwordR = this.mdpEfface;
       let qui = JSON.parse(sessionStorage.getItem("utilisateur"));
@@ -335,6 +368,9 @@ export default {
         });
     },
   },
+  //----------------------------
+  // Logique d'affichage utilisateur après "montage"
+  //----------------------------
   mounted() {
     let oui = JSON.parse(sessionStorage.getItem("utilisateur"));
     axios
@@ -392,6 +428,16 @@ export default {
     @media screen and (max-width: 1023px) {
       margin: 0 auto 0 auto;
     }
+    &__modif {
+      margin: 10px 5px 10px 5px;
+      background-color: white;
+      border: 0px solid black;
+      box-shadow: 1px 1px 3px black;
+      font-size: 1rem;
+      border-radius: 15px;
+      width: 50%;
+      height: 30px;
+    }
     &__bordure {
       display: flex;
       justify-content: space-around;
@@ -435,7 +481,6 @@ export default {
           min-width: 180px;
           font-size: 1rem;
           margin: 8px;
-
           &--option {
             text-align: center;
           }
@@ -449,27 +494,6 @@ export default {
           border-radius: 15px;
           width: 50%;
           height: 30px;
-          animation: détend 0.3s 0.3s linear forwards;
-          @keyframes détend {
-            0% {
-              transform: scale(1);
-            }
-            20% {
-              transform: scale(1);
-            }
-            40% {
-              transform: scale(1.1);
-            }
-            60% {
-              transform: scale(1.25);
-            }
-            80% {
-              transform: scale(1.1);
-            }
-            100% {
-              transform: scale(1);
-            }
-          }
           &:hover {
             border: 0px solid black;
             box-shadow: 2px 2px 4px black;

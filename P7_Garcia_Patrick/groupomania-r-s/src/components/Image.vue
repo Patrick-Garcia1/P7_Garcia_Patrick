@@ -1,4 +1,5 @@
 <template>
+  <!-- page d'accueil -->
   <div id="image">
     <img id="image__def" loading="lazy" alt="Logo de groupomania." src="../assets/icon.png" width="250" height="250" />
   </div>

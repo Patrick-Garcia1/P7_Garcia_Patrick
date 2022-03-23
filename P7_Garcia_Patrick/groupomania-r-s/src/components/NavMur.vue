@@ -1,4 +1,5 @@
-<template>
+<template> 
+  <!-- barre de navigation du mur -->
   <div id="navbis" v-if="autre === true">
     <router-link to="/profil">Profil</router-link> |
     <router-link to="/messages">Mur</router-link> |
@@ -14,6 +15,9 @@ export default {
       autre: "",
     };
   },
+    //----------------------------
+    // Logique d'affichage de la barre de navigation après "montage"
+    //----------------------------
   mounted() {
     let c = document.location.href.split("8080")[1];
     if (c.match("/profil") || c.match("/messages")) {
