@@ -1,5 +1,7 @@
 <template>
+  <!-- page profil -->
   <div class="profilPerso">
+    <!-- composant ProfilUser -->
     <ProfilUser />
   </div>
 </template>

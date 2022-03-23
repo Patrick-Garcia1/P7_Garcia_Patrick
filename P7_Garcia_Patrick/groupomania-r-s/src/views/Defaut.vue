@@ -1,5 +1,7 @@
 <template>
+  <!-- page accueil par défaut --> 
   <div class="defaut">
+    <!-- composant Image --> 
     <Image />
   </div>
 </template>

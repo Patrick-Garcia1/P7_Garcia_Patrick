@@ -1,4 +1,5 @@
 <template>
+<!-- page logout -->
   <div class="logout">
     <h2>Vous avez été déconnecté</h2>
   </div>
@@ -8,6 +9,9 @@
 import axios from "axios";
 // @ is an alias to /src
 export default {
+  //------------------
+  // Logique de logout "automatisée"
+  //------------------
   mounted() {
     let oui = JSON.parse(sessionStorage.getItem("utilisateur"));
     axios
@@ -36,7 +40,6 @@ export default {
         deco();
       });
   },
-  beforeUnmount() {},
 };
 </script>
 <style scoped lang="scss">

@@ -1,5 +1,7 @@
 <template>
+  <!-- page login --> 
   <div class="login">
+    <!-- composant FormulaireLogin --> 
     <FormulaireLogin />
   </div>
 </template>
@@ -13,6 +15,9 @@ export default {
   components: {
     FormulaireLogin,
   },
+  //------------------
+  // Logique supression d'élément utilisateur si existe 
+  //------------------
   mounted() {
     sessionStorage.removeItem("utilisateur");
   },

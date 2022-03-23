@@ -1,5 +1,7 @@
 <template>
+  <!-- page inscription -->
   <div class="signup">
+  <!-- comporsant FormulaireSignup -->
     <FormulaireSignup />
   </div>
 </template>

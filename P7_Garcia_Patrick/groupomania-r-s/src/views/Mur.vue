@@ -1,5 +1,7 @@
 <template>
+<!-- page du mur de messages -->
   <div class="mur">
+    <!-- composant Messages -->
     <Messages />
   </div>
 </template>
