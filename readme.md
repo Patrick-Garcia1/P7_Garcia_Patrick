@@ -6,6 +6,8 @@ Installation machine
 
 node.js
 
+sass
+
 ## Dans le dossier backend 
 
 //------------------
