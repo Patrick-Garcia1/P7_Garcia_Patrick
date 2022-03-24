@@ -16,7 +16,7 @@ sass
 
 ===> créer le fichier .env (voir env.exemple)
 
-Inserer mot de passe dans le fichier config de la bdd 
+Inserer mot de passe dans le fichier config de la bdd et le nom du projet( sera le nom de la table pour la bdd)
 
 //------------------
 
