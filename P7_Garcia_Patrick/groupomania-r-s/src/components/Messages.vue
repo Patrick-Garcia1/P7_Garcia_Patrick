@@ -54,7 +54,7 @@
         :src="message.contenuMultimedia"
         v-if="message.contenuMultimedia !== null"
         class="message__list__image"
-        v-bind:alt="'Contenu multimedia ' + `${message.User.nom}` + ' ' + `${message.User.prenom}` + '.'"
+        v-bind:alt="'Contenu multimedia ' + `${message.id}`"
         width="350px"
         height="350px"
       />
@@ -94,7 +94,7 @@
             </div>
             <div
               class="message__commentaire__affiche__unique__contour"
-              v-if="message.User != null"
+              v-if="message.User != null && commentaire.User != null"
             >
               <img
                 loading="lazy"
@@ -142,11 +142,11 @@
           <div class="comment__cadre__grand">
             <div class="comment__cadre__grand__champs">
               <!-- création id unique entre label et "input/textarea/..." -->
-              <label v-show="labelcom == true" v-bind:for="`${message.User.nom}${message.User.prenom}${message.createdAt}`" class="comment__cadre__grand__champs__label">Commentez</label>
+              <label v-show="labelcom == true" v-bind:for="`${message.id}${message.createdAt}`" class="comment__cadre__grand__champs__label">Commentez</label>
               <textarea
                 type="text"
                 title="Ecrivez le commentaire ici."
-                v-bind:id="`${message.User.nom}${message.User.prenom}${message.createdAt}`" 
+                v-bind:id="`${message.id}${message.createdAt}`" 
                 v-model="texteCom"
                 name="texte"
                 placeholder="Ecrivez votre commentaire ici."
