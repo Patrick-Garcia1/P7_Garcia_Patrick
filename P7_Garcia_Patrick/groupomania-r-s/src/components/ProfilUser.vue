@@ -18,7 +18,7 @@
           <img
             loading="lazy"
             :src="dataUser.image"
-            v-bind:alt="`${dataUser.userId}`"
+            v-bind:alt="'photo de profil ' + `${dataUser.userId}`"
             class="profil__User__bordure__cadre__image"
             height="100px"
             width="100px"
