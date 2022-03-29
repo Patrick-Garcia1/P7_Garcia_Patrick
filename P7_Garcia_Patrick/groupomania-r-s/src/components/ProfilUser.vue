@@ -18,7 +18,7 @@
           <img
             loading="lazy"
             :src="dataUser.image"
-            v-bind:alt="`${dataUser.nom}` + ' ' + `${dataUser.prenom}` + '.'"
+            v-bind:alt="`${dataUser.userId}`"
             class="profil__User__bordure__cadre__image"
             height="100px"
             width="100px"
@@ -359,6 +359,7 @@ export default {
           },
         })
         .then(() => {
+          sessionStorage.removeItem("utilisateur");
           document.location.href = "/";
         })
         .catch(() => {
